@@ -33,7 +33,6 @@ public class Scp999 : Plugin<Config>
         Startup.SetupAPI(Name);
         Startup.RegisterCustomRole(Role);
         CustomHandlersManager.RegisterEventsHandler(_eventHandler);
-        _ = CheckForUpdatesAsync(Version);
     }
 
     public override void LoadConfigs()
@@ -49,7 +48,7 @@ public class Scp999 : Plugin<Config>
         CustomHandlersManager.UnregisterEventsHandler(_eventHandler);
     }
 
-    private static async Task CheckForUpdatesAsync(Version currentVersion)
+    internal static async Task CheckForUpdatesAsync(Version currentVersion)
     {
         try
         {

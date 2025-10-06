@@ -83,4 +83,10 @@ public class EventHandlers : CustomEventsHandler
 
         base.OnPlayerCuffing(ev);
     }
+
+    public override void OnServerWaitingForPlayers()
+    {
+        _ = Scp999.CheckForUpdatesAsync(Scp999.Instance.Version);
+        base.OnServerWaitingForPlayers();
+    }
 }
