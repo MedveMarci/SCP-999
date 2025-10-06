@@ -49,7 +49,7 @@
 
 ![img](https://img.shields.io/github/downloads/MedveMarci/SCP-999/total.svg)
 
-- The [main plugin](https://github.com/RisottoMan/SCP-999) created by ``RisottoMan``.
+- The [main plugin](https://github.com/RisottoMan/SCP-999) created by ``RisottoMan``
 - Thanks ``Caty Foxt`` for the original idea
 - Thanks ``power2008qwe`` for creating the model
 - Thanks ``xleb.ik`` for creation the animations
