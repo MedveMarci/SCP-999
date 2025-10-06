@@ -95,7 +95,7 @@ public class Scp999Role : ExtendedRole
     {
         SchematicName = "SCP999",
         Offset = new Vector3(0f, -0.75f, 0f),
-        Rotation = new Vector3(0f, 90, 0f)
+        Rotation = new Vector3(0f, 0f, 0f)
     };
 
     public override HintConfig HintConfig { get; set; } = new()
