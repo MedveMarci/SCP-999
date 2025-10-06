@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using CustomPlayerEffects;
-using Exiled.API.Features;
+using LabApi.Features.Wrappers;
 using MEC;
 using RoleAPI.API.Interfaces;
 using RoleAPI.API.Managers;
 using UnityEngine;
 
 namespace Scp999.Features.Abilities;
+
 public class HelloAbility : Ability
 {
     public override string Name => "Hello";
@@ -14,25 +15,21 @@ public class HelloAbility : Ability
     public override int KeyId => 9992;
     public override KeyCode KeyCode => KeyCode.F;
     public override float Cooldown => 15f;
-    protected override bool ActivateAbility(Player player, ObjectManager manager)
+
+    protected override void ActivateAbility(Player player, ObjectManager manager)
     {
-        player.EnableEffect<Ensnared>(3f);
+        player.EnableEffect<Ensnared>(duration: 3f);
         manager.Animator?.Play("HelloAnimation");
 
-        if (Random.Range(0, 2) == 0)
-        {
-            manager.AudioPlayer.AddClip("hello");
-        }
+        var clipName = Random.Range(0, 2) == 0 ? "hello" : "hi";
+        if (!AudioClipStorage.AudioClips.ContainsKey($"{clipName}"))
+            LogManager.Error($"[Scp066] The audio file '{clipName}.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
         else
-        {
-            manager.AudioPlayer.AddClip("hi");
-        }
-        
-        Timing.RunCoroutine(this.CheckEndOfAnimation(player, manager.Animator));
-        return true;
+            manager.AudioPlayer?.AddClip(clipName, 0.5f);
+        Timing.RunCoroutine(CheckEndOfAnimation(player, manager.Animator));
     }
-    
-    private IEnumerator<float> CheckEndOfAnimation(Player player, Animator animator)
+
+    private static IEnumerator<float> CheckEndOfAnimation(Player player, Animator animator)
     {
         yield return Timing.WaitForSeconds(0.1f);
         while (true)
@@ -43,7 +40,7 @@ public class HelloAbility : Ability
                 player.DisableEffect<Ensnared>();
                 yield break;
             }
-            
+
             yield return Timing.WaitForSeconds(0.3f);
         }
     }

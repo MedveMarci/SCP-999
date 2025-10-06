@@ -1,80 +1,111 @@
-﻿using PlayerRoles;
-using System.Collections.Generic;
-using Exiled.API.Features.Spawn;
-using Exiled.API.Enums;
+﻿using System.Collections.Generic;
+using PlayerRoles;
 using RoleAPI.API;
 using RoleAPI.API.Configs;
+using RoleAPI.API.CustomModules;
 using Scp999.Features.Abilities;
+using UncomplicatedCustomRoles.API.Enums;
+using UncomplicatedCustomRoles.API.Features;
+using UncomplicatedCustomRoles.API.Features.Behaviour;
+using UncomplicatedCustomRoles.API.Features.CustomModules;
+using UncomplicatedCustomRoles.Manager;
 using UnityEngine;
 
 namespace Scp999.Features;
+
 public class Scp999Role : ExtendedRole
 {
-    public override string Name { get; set; } = "SCP-999";
-    public override string Description { get; set; } = "The tickle monster";
-    public override string CustomInfo { get; set; } = "SCP-999";
-    public override uint Id { get; set; } = 9999;
-    public override int MaxHealth { get; set; } = 2000;
-    public override SpawnProperties SpawnProperties { get; set; } = new()
-    {
-        Limit = 1,
-        DynamicSpawnPoints = new List<DynamicSpawnPoint>()
-        {
-            new() { Chance = 25, Location = SpawnLocationType.Inside330Chamber },
-            new() { Chance = 25, Location = SpawnLocationType.Inside914 },
-            new() { Chance = 25, Location = SpawnLocationType.InsideGr18 },
-            new() { Chance = 25, Location = SpawnLocationType.InsideLczWc }
-        }
-    };
+    public override int Id { get; set; } = 999;
+    public override string Name { get; set; } = "<color=#960018>SCP-999</color>";
+    public override bool OverrideRoleName { get; set; } = true;
+    public override string Nickname { get; set; } = null;
+    public override string CustomInfo { get; set; } = "<color=#960018>Other Alive</color>";
+    public override string BadgeName { get; set; } = "";
+    public override string BadgeColor { get; set; } = "";
+    public override string SpawnHint { get; set; } = "";
     public override RoleTypeId Role { get; set; } = RoleTypeId.Tutorial;
-    
-    public override Exiled.API.Features.Broadcast Broadcast { get; set; } = new()
+    public override Team? Team { get; set; } = PlayerRoles.Team.OtherAlive;
+    public override RoleTypeId RoleAppearance { get; set; } = RoleTypeId.Tutorial;
+    public override List<Team> IsFriendOf { get; set; } = [];
+
+    public override HealthBehaviour Health { get; set; } = new()
     {
-        Show = true,
-        Content = 
-            "<color=#ffa500>\ud83d\ude04 You are SCP-999 - The tickle monster! \ud83d\ude04\n" +
-            "Heal Humans, dance and calm down SCPs in facility\n" +
-            "Use abilities by clicking on the buttons</color>",
-        Duration = 15
+        Amount = 1500,
+        Maximum = 1500
     };
-    
-    public override string ConsoleMessage { get; set; } =
-        "You are SCP-999 - The tickle monster!\n" +    
-        "You have a lot of abilities, for example, you can heal players or dance.\n" +
-        "Configure your buttons in the settings. Remove the stars.";
 
-    public override string CustomDeathText { get; set; } = "There is no text here, as it is a safe class.";
-    
-    public override string CassieDeathAnnouncement { get; set; } = $"SCP-999 contained successfully.";
+    public override List<Effect> Effects { get; set; } =
+    [
+        new()
+        {
+            EffectType = "Fade",
+            Duration = -1,
+            Intensity = 255,
+            Removable = false
+        },
+        new()
+        {
+            EffectType = "Slowness",
+            Duration = -1,
+            Intensity = 25,
+            Removable = false
+        },
+        new()
+        {
+            EffectType = "SilentWalk",
+            Duration = -1,
+            Intensity = 255,
+            Removable = false
+        },
+        new()
+        {
+            EffectType = "Ghostly",
+            Duration = -1,
+            Intensity = 255,
+            Removable = false
+        }
+    ];
 
-    public override SpawnConfig SpawnConfig { get; set; } = new()
+    public override bool CanEscape { get; set; } = false;
+
+    public override string SpawnBroadcast { get; set; } =
+        "<color=#ffa500>\ud83d\ude04 You are SCP-999 - The tickle monster! \ud83d\ude04\n" +
+        "Heal Humans, dance and calm down SCPs in facility\n" +
+        "Use abilities by clicking on the buttons</color>";
+
+    public override ushort SpawnBroadcastDuration { get; set; } = 15;
+    public override List<ItemType> Inventory { get; set; } = [];
+    public override Dictionary<ItemType, ushort> Ammo { get; set; } = [];
+    public override float DamageMultiplier { get; set; } = 0;
+
+    public override SpawnBehaviour SpawnSettings { get; set; } = new()
     {
-        MinPlayers = 7,
-        SpawnChance = 50
+        CanReplaceRoles =
+        [
+            RoleTypeId.FacilityGuard, RoleTypeId.Scientist, RoleTypeId.ClassD
+        ],
+        MinPlayers = 5,
+        MaxPlayers = 1,
+        SpawnChance = 5,
+        Spawn = SpawnType.RoleSpawn,
+        SpawnRoles = [RoleTypeId.Scp096]
     };
 
     public override SchematicConfig SchematicConfig { get; set; } = new()
     {
         SchematicName = "SCP999",
         Offset = new Vector3(0f, -0.75f, 0f),
-    };
-
-    public override TextToyConfig TextToyConfig { get; set; } = new()
-    {
-        Text = "<color=orange>SCP-999</color>",
-        Offset = new Vector3(0, 1, 0),
-        Rotation = new Vector3(0, 180, 0),
-        Scale = new Vector3(0.2f, 0.2f, 0.2f),
+        Rotation = new Vector3(0f, 90, 0f)
     };
 
     public override HintConfig HintConfig { get; set; } = new()
     {
-        Text = "<align=right><size=50><color=#ffa500>\ud83d\ude06 <b>SCP-999</b></color></size>\n" + 
-               "Abilities:\n" + 
-               "<color=%color%>Yippee {0}</color>\n" + 
-               "<color=%color%>Hello {1}</color>\n" + 
-               "<color=%color%>Heal {2}</color>\n" + 
-               "<color=%color%>Dance {3}</color>\n" + 
+        Text = "<align=right><size=50><color=#ffa500>\ud83d\ude06 <b>SCP-999</b></color></size>\n" +
+               "Abilities:\n" +
+               "<color=%color%>Yippee {0}</color>\n" +
+               "<color=%color%>Hello {1}</color>\n" +
+               "<color=%color%>Heal {2}</color>\n" +
+               "<color=%color%>Dance {3}</color>\n" +
                "\n<size=18>if you cant use abilities\nremove \u2b50 in settings</size></align>",
         AvailableAbilityColor = "#ffa500",
         UnavailableAbilityColor = "#966100"
@@ -91,7 +122,7 @@ public class Scp999Role : ExtendedRole
 
     public override AbilityConfig AbilityConfig { get; set; } = new()
     {
-        AbilityTypes = 
+        AbilityTypes =
         [
             typeof(YippeeAbility),
             typeof(HelloAbility),
@@ -100,20 +131,18 @@ public class Scp999Role : ExtendedRole
         ]
     };
 
-    public override List<EffectConfig> Effects { get; set; } =
-    [
-        new EffectConfig()
-        {
-            EffectType = EffectType.Disabled,
-        },
-
-        new EffectConfig()
-        {
-            EffectType = EffectType.Slowness,
-            Intensity = 25
-        }
-    ];
-    
-    public override bool IsPlayerInvisible { get; set; } = true;
-    public override bool IsShowPlayerNickname { get; set; } = true;
+    public override void OnSpawned(SummonedCustomRole role)
+    {
+        role.AddModule(
+            typeof(CustomScpAnnouncer),
+            new Dictionary<string, object> { { "name", "SCP999" } }
+        );
+        role.AddModule(typeof(ColorfulNickname), new Dictionary<string, object> { { "color", "#960018" } });
+        role.AddModule(typeof(ColorfulRaName), new Dictionary<string, object> { { "color", "#960018" } });
+        role.AddModule(typeof(NoBloodDecal));
+        role.AddModule(typeof(CantPickupAnyItem));
+        role.AddModule(typeof(DisableAnyInteraction));
+        role.AddModule(typeof(RunAway));
+        base.OnSpawned(role);
+    }
 }
