@@ -22,10 +22,11 @@ public class Scp999 : Plugin<Config>
         "Adds SCP-999, the tickling monster, as a custom role with unique abilities and features.";
 
     public override string Author => "MedveMarci";
-    public override Version Version => new(1, 0, 0);
+    public override Version Version => new(1, 1, 0);
     public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
     public static Scp999 Instance { get; private set; }
     private Scp999Role Role { get; set; }
+    public string githubRepo = "MedveMarci/Scp999";
 
     public override void Enable()
     {
