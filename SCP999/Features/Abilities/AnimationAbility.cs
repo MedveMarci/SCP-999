@@ -49,10 +49,10 @@ public class AnimationAbility : Ability
             case > 60 and <= 90:
             {
                 manager.Animator?.Play("FunAnimation3");
-                if (!AudioClipStorage.AudioClips.ContainsKey("shrink"))
-                    LogManager.Error("[Scp066] The audio file 'shrink.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
+                if (!AudioClipStorage.AudioClips.ContainsKey("funnytoy"))
+                    LogManager.Error("[Scp066] The audio file 'funnytoy.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
                 else
-                    manager.AudioPlayer?.AddClip("shrink");
+                    manager.AudioPlayer?.AddClip("funnytoy");
             }
                 break;
 
