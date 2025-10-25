@@ -17,7 +17,8 @@ public class HealAbility : Ability
     {
         manager.Animator?.Play("HealthAnimation");
         if (!AudioClipStorage.AudioClips.ContainsKey("health"))
-            LogManager.Error("[Scp066] The audio file 'health.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
+            LogManager.Error(
+                "[Scp999] The audio file 'health.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
         else
             manager.AudioPlayer.AddClip("health", 0.5f);
 

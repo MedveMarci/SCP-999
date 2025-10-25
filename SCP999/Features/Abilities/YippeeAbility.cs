@@ -23,7 +23,8 @@ public class YippeeAbility : Ability
         var chance = Random.Range(0, 100);
         if (chance >= 60) value = 2;
         if (!AudioClipStorage.AudioClips.ContainsKey($"yippee-tbh{value}"))
-            LogManager.Error($"[Scp066] The audio file 'yippee-tbh{value}.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
+            LogManager.Error(
+                $"[Scp999] The audio file 'yippee-tbh{value}.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
         else
             manager.AudioPlayer.AddClip($"yippee-tbh{value}", 0.5f);
     }
