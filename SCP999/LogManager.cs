@@ -3,7 +3,7 @@ using LabApi.Features.Console;
 
 namespace Scp999;
 
-internal abstract class LogManager
+internal static class LogManager
 {
     private static bool DebugEnabled => Scp999.Instance?.Config?.Debug == true;
 

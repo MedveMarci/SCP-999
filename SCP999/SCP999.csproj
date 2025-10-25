@@ -29,18 +29,24 @@
         <Exec Command="copy /Y $(TargetPath) &quot;$(LABAPI_PLUGINS)\&quot;" />
     </Target>
     <ItemGroup>
+        <Reference Include="0Harmony, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>packages\Lib.Harmony.2.4.1\lib\net48\0Harmony.dll</HintPath>
+        </Reference>
         <Reference Include="Assembly-CSharp-firstpass" HintPath="$(SL_REFERENCES)\Assembly-CSharp-firstpass.dll" />
         <Reference Include="Assembly-CSharp" HintPath="$(SL_REFERENCES)\Assembly-CSharp-Publicized.dll" />
         <Reference Include="CommandSystem.Core" HintPath="$(SL_REFERENCES)\CommandSystem.Core.dll" />
-        <Reference Include="LabApi, Version=1.1.3.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>packages\Northwood.LabAPI.1.1.3\lib\net48\LabApi.dll</HintPath>
+        <Reference Include="LabApi, Version=1.1.4.0, Culture=neutral, processorArchitecture=Amd64">
+          <HintPath>packages\Northwood.LabAPI.1.1.4\lib\net48\LabApi.dll</HintPath>
         </Reference>
         <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.9, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
             <HintPath>packages\Microsoft.Bcl.AsyncInterfaces.9.0.9\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
         </Reference>
         <Reference Include="mscorlib" />
+        <Reference Include="RoleAPI">
+          <HintPath>$(labapi_dependencies)\RoleAPI.dll</HintPath>
+        </Reference>
         <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-          <HintPath>packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+            <HintPath>packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
         </Reference>
         <Reference Include="System.ComponentModel.Composition" />
         <Reference Include="System.Core" />
@@ -98,9 +104,8 @@
         <Reference Include="ProjectMER" HintPath="$(LABAPI_PLUGINS)\ProjectMER.dll" />
         <Reference Include="Mirror" HintPath="$(SL_REFERENCES)\Mirror.dll" />
         <Reference Include="AudioPlayerApi" HintPath="$(LABAPI_DEPENDENCIES)\AudioPlayerApi.dll" />
-        <Reference Include="RoleAPI" HintPath="$(LABAPI_DEPENDENCIES)\RoleAPI.dll" />
         <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-          <HintPath>packages\YamlDotNet.11.0.1\lib\net45\YamlDotNet.dll</HintPath>
+            <HintPath>packages\YamlDotNet.11.0.1\lib\net45\YamlDotNet.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
@@ -112,6 +117,7 @@
         <Compile Include="Features\Abilities\YippeeAbility.cs" />
         <Compile Include="Features\Scp999Role.cs" />
         <Compile Include="LogManager.cs" />
+        <Compile Include="Patches\DoorCrusherPatch.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Reference Include="System" />
