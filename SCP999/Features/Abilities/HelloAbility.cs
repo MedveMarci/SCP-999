@@ -23,7 +23,8 @@ public class HelloAbility : Ability
 
         var clipName = Random.Range(0, 2) == 0 ? "hello" : "hi";
         if (!AudioClipStorage.AudioClips.ContainsKey($"{clipName}"))
-            LogManager.Error($"[Scp066] The audio file '{clipName}.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
+            LogManager.Error(
+                $"[Scp999] The audio file '{clipName}.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
         else
             manager.AudioPlayer?.AddClip(clipName, 0.5f);
         Timing.RunCoroutine(CheckEndOfAnimation(player, manager.Animator));

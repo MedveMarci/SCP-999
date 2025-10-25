@@ -6,7 +6,6 @@ using LabApi.Events.Arguments.Scp173Events;
 using LabApi.Events.Arguments.Scp3114Events;
 using LabApi.Events.CustomHandlers;
 using PlayerRoles;
-using PlayerStatsSystem;
 using UncomplicatedCustomRoles.Extensions;
 
 namespace Scp999;
@@ -57,9 +56,6 @@ public class EventHandlers : CustomEventsHandler
     {
         if (ev.Attacker is not { IsSCP: true } || !ev.Player.TryGetSummonedInstance(out var role) ||
             role.Role.Id != 999) return;
-
-        if (ev.DamageHandler.DeathScreenText == DeathTranslations.Crushed.DeathscreenTranslation)
-            ev.IsAllowed = false;
 
         if (ev.Attacker.Role is RoleTypeId.Scp049)
             ev.Player.DisableEffect<CardiacArrest>();

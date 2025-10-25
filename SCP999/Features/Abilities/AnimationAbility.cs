@@ -28,7 +28,8 @@ public class AnimationAbility : Ability
             {
                 manager.Animator?.Play("FunAnimation1");
                 if (!AudioClipStorage.AudioClips.ContainsKey("circus"))
-                    LogManager.Error("[Scp066] The audio file 'circus.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
+                    LogManager.Error(
+                        "[Scp999] The audio file 'circus.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
                 else
                     manager.AudioPlayer?.AddClip("circus");
             }
@@ -39,7 +40,8 @@ public class AnimationAbility : Ability
             {
                 manager.Animator?.Play("FunAnimation2");
                 if (!AudioClipStorage.AudioClips.ContainsKey("jump"))
-                    LogManager.Error("[Scp066] The audio file 'jump.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
+                    LogManager.Error(
+                        "[Scp999] The audio file 'jump.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
                 else
                     manager.AudioPlayer?.AddClip("jump");
             }
@@ -50,7 +52,8 @@ public class AnimationAbility : Ability
             {
                 manager.Animator?.Play("FunAnimation3");
                 if (!AudioClipStorage.AudioClips.ContainsKey("funnytoy"))
-                    LogManager.Error("[Scp066] The audio file 'funnytoy.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
+                    LogManager.Error(
+                        "[Scp999] The audio file 'funnytoy.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
                 else
                     manager.AudioPlayer?.AddClip("funnytoy");
             }
@@ -61,7 +64,8 @@ public class AnimationAbility : Ability
             {
                 manager.Animator?.Play("FunAnimation4");
                 if (!AudioClipStorage.AudioClips.ContainsKey("uwu"))
-                    LogManager.Error("[Scp066] The audio file 'uwu.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
+                    LogManager.Error(
+                        "[Scp999] The audio file 'uwu.ogg' was not found for playback. Please ensure the file is placed in the correct directory.");
                 else
                     manager.AudioPlayer?.AddClip("uwu");
             }
